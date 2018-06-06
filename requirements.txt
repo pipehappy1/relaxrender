@@ -1,0 +1,9 @@
+numpy
+imageio
+matplotlib
+scipy
+scikit-image
+sphinx
+#sphinx-autobuild
+pytest
+pytest-cov
