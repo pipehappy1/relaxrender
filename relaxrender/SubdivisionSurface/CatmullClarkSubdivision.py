@@ -23,27 +23,31 @@ def  CatmullClarkSubdivision(faces,num):
     
     for i in range(num):
         lines,line_to_faces,face_to_lines=build_index(faces)
-        print(line_to_faces,face_to_lines)
+        #print(line_to_faces,face_to_lines)
         points,point_to_lines,line_to_points=build_index(lines)
-        draw(face_to_lines,line_to_points,points)
+        #draw(face_to_lines,line_to_points,points)
+        #print("lines:",lines)
         faces=CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
-
+    lines,line_to_faces,face_to_lines=build_index(faces)
+        #print(line_to_faces,face_to_lines)
+    points,point_to_lines,line_to_points=build_index(lines)
+    #draw(face_to_lines,line_to_points,points)
 
 def draw(face_to_lines,line_to_points,points):
     verts=list((p.data[0],p.data[1],p.data[2]) for p in points)
     faces=[]
-    print(face_to_lines,line_to_points)
+    #print(face_to_lines,line_to_points)
     for ftl in face_to_lines.values():
         faces.append([])
         faces[-1].extend(line_to_points[ftl[0]])
         tmp=[ftl[0]]
         for i in range(2):
             for ltp in ftl:
-                print(ftl,ltp)
+                #print(ftl,ltp)
                 if ltp not in tmp and faces[-1][-1] in line_to_points[ltp]:
-                    faces[-1].append(np.abs(1-line_to_points[ltp].index(faces[-1][-1])))
+                    faces[-1].append(line_to_points[ltp][1-line_to_points[ltp].index(faces[-1][-1])])
                     tmp.append(ltp)
-                    
+    #print(verts,'\n',faces)         
         
 
     poly3d = [[verts[vert_id] for vert_id in face] for face in faces]  
@@ -101,6 +105,11 @@ def build_index(faces):
     PS：this func is not designed as a interface
 '''
 def CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines):
+    #print("old_points:",list((p.data[0],p.data[1],p.data[2]) for p in points))
+    #print("face_to_lines:",face_to_lines)
+    #print("line_to_points:",line_to_points)
+    #print("line_to_faces:",line_to_faces)
+    #print("point_to_lines:",point_to_lines)
     face_points=[]
     for face in faces:
         temp=[]
@@ -109,9 +118,11 @@ def CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,l
             temp.append(l[1].data)
         data=sum(temp)/2/len(face)
         face_points.append(Point(p=Point3D.create(data)))
+    #print("face_points:",len(face_points),list((p.data[0],p.data[1],p.data[2]) for p in face_points))
+
     edge_points=[]
     
-    for i in len(lines):
+    for i in range(len(lines)):
         temp=[]
         temp.append(face_points[line_to_faces[i][0]].data)
         temp.append(face_points[line_to_faces[i][1]].data)
@@ -119,23 +130,32 @@ def CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,l
         temp.append(points[line_to_points[i][1]].data)
         data=sum(temp)/4
         edge_points.append(Point(p=Point3D.create(data)))
+    #print("edge_points:",list((p.data[0],p.data[1],p.data[2]) for p in edge_points))
+    
     vertes_points=[]
     for i in range(len(points)):
-        data1=np.array([0,0])
-        data2=np.array([0,0])
+        data1=np.array([0.0,0.0,0.0])
+        data2=np.array([0.0,0.0,0.0])
         for j in point_to_lines[i]:
-            data1+=(lines[j][0].data+lines[j][1].data)/2
-            data2+=(face_points[line_to_faces[j][0]].data+face_points[line_to_faces[j][1]].data)/2
+            data1+=(lines[j][0].data+lines[j][1].data)/2.0/len(point_to_lines[i])
+            data2+=(face_points[line_to_faces[j][0]].data+face_points[line_to_faces[j][1]].data)/2/len(point_to_lines[i])
         points[i].data=(data2+2*data1+(len(point_to_lines[i])-3)*points[i].data)/len(point_to_lines[i])
+    #print("new_points:",list((p.data[0],p.data[1],p.data[2]) for p in points))
+    
     re_faces=[]
     for i in range(len(face_points)):
         tmp=[]
         for j in face_to_lines[i]:
             for k in line_to_points[j]:
                 if k not in  tmp:
-                    re_faces.append([face_points[i],points[k]])
-                    re_faces[-1].extend(list(edge_points[p_i] for p_i in point_to_lines[k] and face_to_lines[i] ))
-                    tmp.append(j)
+                    re_faces.append([])
+                    #print(point_to_lines[k],face_to_lines[i])
+                    eps=list(edge_points[p_i] for p_i in [m for m in point_to_lines[k] if m in face_to_lines[i]] )
+                    #print(eps)
+                    for ep in eps:
+                        re_faces[-1].extend([ [face_points[i],ep],[points[k],ep] ])
+                    tmp.append(k)
+    print(len(re_faces),'\n',re_faces[0])
     return re_faces
 
 
@@ -154,6 +174,6 @@ if __name__=='__main__':
         faces.append([])
         for i in ft:
             faces[-1].append(lines[i])
-    CatmullClarkSubdivision(faces,1)
+    CatmullClarkSubdivision(faces,5)
 
 
