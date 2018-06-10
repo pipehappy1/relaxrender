@@ -179,3 +179,4 @@ if __name__ == '__main__':
     # print_face(get_new_face(face_test))
     # for ps in points_doos:
     #     print_points(ps)
+    #
