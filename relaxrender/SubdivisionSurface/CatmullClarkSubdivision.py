@@ -174,6 +174,6 @@ if __name__=='__main__':
         faces.append([])
         for i in ft:
             faces[-1].append(lines[i])
-    CatmullClarkSubdivision(faces,5)
+    CatmullClarkSubdivision(faces,4)
 
 
