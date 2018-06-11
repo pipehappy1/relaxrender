@@ -4,7 +4,7 @@
 
 from relaxrender.triangle import Triangle,Triangles
 from relaxrender.points import Point,Point3D
-
+import numpy as np
 #__all__==['CatmullClarkSubdivision']
 
 def  CatmullClarkSubdivision(faces,num):
