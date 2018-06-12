@@ -180,3 +180,11 @@ if __name__ == '__main__':
     # for ps in points_doos:
     #     print_points(ps)
     #
+'''
+
+'''
+TODO:
+Verify teacher's test and complete it.
+Refer to A group's interface.
+Figure out where to use numpy.
+'''
