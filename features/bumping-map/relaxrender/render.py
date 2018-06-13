@@ -200,7 +200,7 @@ def building():
         Sphere(vec3(0, .1, 0.5), .6, rgb(.221, .169, .105)),
         # CheckeredSphere(vec3(0,-99999.5, 0), 99999, rgb(.75, .75, .75), 0.25),
     ]
-
+    # r is the result of
     r = float(w) / h
     # Screen coordinates: x0, y0, x1, y1.
     S = (-1., 1. / r + .25, 1., -1. / r + .25)
