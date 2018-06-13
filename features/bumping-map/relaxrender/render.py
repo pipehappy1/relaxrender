@@ -68,6 +68,8 @@ class vec3():
         ve=vec3(x,y,z)
         return ve
 
+
+
 rgb = vec3
 tangent=vec3
 (w, h) = (400, 300)         # Screen size
@@ -75,13 +77,11 @@ L = vec3(0, 0.35, -1.)        # Point light position
 E = vec3(0., 0.35, -10)     # Eye position
 FARAWAY = 1.0e39            # an implausibly huge distance
 (low,high)=(0.8,1)
-
 # O is the ray origin, D is the normalized ray direction.
-    # scene is a list of Sphere objects (see
-    #  below)
-    # bounce is the number of the bounce, starting at zero for camera rays.
+# scene is a list of Sphere objects (see
+#  below)
+# bounce is the number of the bounce, starting at zero for camera rays.
 def raytrace(O, D, scene,tangent, bounce = 0):
-    
     distances = [s.intersect(O, D) for s in scene]
     nearest = reduce(np.minimum, distances)
     color = rgb(0, 0, 0)
@@ -94,15 +94,12 @@ def raytrace(O, D, scene,tangent, bounce = 0):
             cc = s.light(Oc, Dc, dc, scene, bounce,tangent)
             color += cc.place(hit)
     return color
-
-
 class Sphere:
     def __init__(self, center, r, diffuse, mirror = 0):
         self.c = center
         self.r = r
         self.diffuse = diffuse
         self.mirror = mirror
-
     def intersect(self, O, D):
         b = 2 * D.dot(O - self.c)
         c = abs(self.c) + abs(O) - 2 * self.c.dot(O) - (self.r * self.r)
@@ -113,9 +110,9 @@ class Sphere:
         h = np.where((h0 > 0) & (h0 < h1), h0, h1)
         pred = (disc > 0) & (h > 0)
         return np.where(pred, h, FARAWAY)
-
     def diffusecolor(self, M):
-        return self.diffuse
+        return self.diffuse                     #h = np.where((h0 > 0) & (h0 < h1), h0, h1)
+
 
     def light(self, O, D, d, scene, bounce,tangent):
         M = (O + D * d)                         # intersection point
@@ -147,7 +144,7 @@ class Sphere:
         # Lambert shading (diffuse)
         lv = np.maximum(0,tangent.dot(toL)*-1)
         color += self.diffusecolor(M) * lv * seelight
-
+        
         # Reflection
         if bounce < 2:
             rayD = (D - N * 2 * D.dot(N)).norm()
@@ -163,7 +160,7 @@ class CheckeredSphere(Sphere):
     def diffusecolor(self, M):
         checker = ((M.x * 2).astype(int) % 2) == ((M.z * 2).astype(int) % 2)
         return self.diffuse * checker
-
+                        # checker = ((M.x * 2).astype(int) % 2) == ((M.z * 2).astype(int) % 2)
 def building():
     rgb = vec3
     tangent = vec3
@@ -211,9 +208,11 @@ def building():
     color = raytrace(E, (Q - E).norm(), scene, tangent, 0)
     print("Took", time.time() - t0)
     l = []
-    for c in color.components():
+    for c in color.components():   
         l.append((255 * np.clip(c, 0, 1).reshape((h, w))).astype(np.uint8))
     list(list([l[0][i][j], l[1][i][j], l[2][i][j]] for j in range(len(l[0][0]))) for i in range(len(l[0])))
     output = np.array(
         list(list([l[0][i][j], l[1][i][j], l[2][i][j]] for j in range(len(l[0][0]))) for i in range(len(l[0]))))
     imageio.imwrite(r"output.png", output)
+
+    
