@@ -58,5 +58,5 @@ def loop2(ox, oy, d, circles, blockers):
     if min(minb, minc, mind) >= 0:
         r = min(minb, minc, mind)
     else:
-        r = 0
+         r = 0
     return r
