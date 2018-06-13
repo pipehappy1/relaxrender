@@ -211,9 +211,11 @@ def building():
     color = raytrace(E, (Q - E).norm(), scene, tangent, 0)
     print("Took", time.time() - t0)
     l = []
-    for c in color.components():
+    for c in color.components():   
         l.append((255 * np.clip(c, 0, 1).reshape((h, w))).astype(np.uint8))
     list(list([l[0][i][j], l[1][i][j], l[2][i][j]] for j in range(len(l[0][0]))) for i in range(len(l[0])))
     output = np.array(
         list(list([l[0][i][j], l[1][i][j], l[2][i][j]] for j in range(len(l[0][0]))) for i in range(len(l[0]))))
     imageio.imwrite(r"output.png", output)
+
+    
