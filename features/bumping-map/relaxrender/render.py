@@ -1,4 +1,3 @@
-from PIL import Image
 from functools import reduce
 import numpy as np
 import time
@@ -7,7 +6,7 @@ import imageio
 import random
 import sys
 import math
-#np.seterr(divide='ignore', invalid='ignore')
+
 def extract(cond, x):
     if isinstance(x, numbers.Number):
         return x
@@ -77,13 +76,13 @@ L = vec3(0, 0.35, -1.)        # Point light position
 E = vec3(0., 0.35, -10)     # Eye position
 FARAWAY = 1.0e39            # an implausibly huge distance
 (low,high)=(0.8,1)
+
+
 def raytrace(O, D, scene,tangent, bounce = 0):
     # O is the ray origin, D is the normalized ray direction
     # scene is a list of Sphere objects (see
     #  below)
     # bounce is the number of the bounce, starting at zero for camera rays
-
-
     distances = [s.intersect(O, D) for s in scene]
     nearest = reduce(np.minimum, distances)
     color = rgb(0, 0, 0)
