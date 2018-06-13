@@ -39,7 +39,7 @@ def loop2(ox, oy, d, circles, blockers):
         # else:
         #return second_circle
         #else:
-              #return max_in_nine_points(second_circle[0], second_circle[1], d/2, circles, blockers)
+               #return max_in_nine_points(second_circle[0], second_circle[1], d/2, circles, blockers)
     else:
         return max_in_nine_points(max_circle[0], max_circle[1], d/3 , circles, blockers)
         def max_circle_one_point(ox, oy, circles, blockers):
