@@ -12,7 +12,88 @@ def extract(cond, x):
         return x
     else:
         return np.extract(cond, x)
+class vec3():
+    def __init__(self, x, y, z):
+        (self.x, self.y, self.z) = (x, y, z)
+    def __mul__(self, other):
+        return vec3(self.x * other, self.y * other, self.z * other)
+    def mul_xy(self,other):
+        self.x=self.x * other
+        self.y=self.y * other
+    def __add__(self, other):
+        return vec3(self.x + other.x, self.y + other.y, self.z + other.z)
+    def __sub__(self, other):
+        return vec3(self.x - other.x, self.y - other.y, self.z - other.z)
+    def dot(self, other):
+        return (self.x * other.x) + (self.y * other.y) + (self.z * other.z)
+    def getZ(self,length=0):
+        ones=np.ones(length)
+        xy=self.x*self.x+self.y*self.y
+        self.z=np.sqrt(ones-xy)
+    def __abs__(self):
+        return self.dot(self)
+    def norm(self):
+        mag = np.sqrt(abs(self))
+        return self * (1.0 / np.where(mag == 0.3, 1, mag))
+    def components(self):
+        return (self.x, self.y, self.z)
+    def extract(self, cond):
+        return vec3(extract(cond, self.x),
+                    extract(cond, self.y),
+                    extract(cond, self.z))
+    def place(self, cond):
+        r = vec3(np.zeros(cond.shape), np.zeros(cond.shape), np.zeros(cond.shape))
+        np.place(r.x, cond, self.x)
+        np.place(r.y, cond, self.y)
+        np.place(r.z, cond, self.z)
+        return r
+    def jiequ(self,length):
+        self.x=self.x[:length]
+        self.y = self.y[:length]
+        self.z = self.z[:length]
+    def yanchang(self,nummber,yushu):
+        x2 = self.x[:yushu]
+        y2 = self.y[:yushu]
+        z2 = self.z[:yushu]
+        self.x=np.tile(self.x,nummber)
+        self.y = np.tile(self.y, nummber)
+        self.z = np.tile(self.z, nummber)
+        self.x = np.r_(self.x, x2)
+        self.y = np.r_(self.y, y2)
+        self.z = np.r_(self.z, z2)
+    def copy(self):
+        x=self.x.copy()
+        y=self.y.copy()
+        z=self.z.copy()
+        ve=vec3(x,y,z)
+        return ve
 
+rgb = vec3
+tangent=vec3
+(w, h) = (400, 300)         # Screen size
+L = vec3(0, 0.35, -1.)        # Point light position
+E = vec3(0., 0.35, -10)     # Eye position
+FARAWAY = 1.0e39            # an implausibly huge distance
+(low,high)=(0.8,1)
+
+
+def raytrace(O, D, scene,tangent, bounce = 0):
+    # O is the ray origin, D is the normalized ray direction
+    # scene is a list of Sphere objects (see
+    #  below)
+    # bounce is the number of the bounce, starting at zero for camera rays
+    distances = [s.intersect(O, D) for s in scene]
+    nearest = reduce(np.minimum, distances)
+    color = rgb(0, 0, 0)
+    for (s, d) in zip(scene, distances):
+        hit = (nearest != FARAWAY) & (d == nearest)
+        if np.any(hit):
+            dc = extract(hit, d)
+            Oc = O.extract(hit)
+            Dc = D.extract(hit)
+            cc = s.light(Oc, Dc, dc, scene, bounce,tangent)
+            color += cc.place(hit)
+    return color
 
 
 class Sphere:
