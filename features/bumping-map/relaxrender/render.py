@@ -77,12 +77,12 @@ E = vec3(0., 0.35, -10)     # Eye position
 FARAWAY = 1.0e39            # an implausibly huge distance
 (low,high)=(0.8,1)
 
-
-def raytrace(O, D, scene,tangent, bounce = 0):
-    # O is the ray origin, D is the normalized ray direction
+# O is the ray origin, D is the normalized ray direction.
     # scene is a list of Sphere objects (see
     #  below)
-    # bounce is the number of the bounce, starting at zero for camera rays
+    # bounce is the number of the bounce, starting at zero for camera rays.
+def raytrace(O, D, scene,tangent, bounce = 0):
+    
     distances = [s.intersect(O, D) for s in scene]
     nearest = reduce(np.minimum, distances)
     color = rgb(0, 0, 0)
