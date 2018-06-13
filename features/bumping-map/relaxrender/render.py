@@ -111,8 +111,7 @@ class Sphere:
         pred = (disc > 0) & (h > 0)
         return np.where(pred, h, FARAWAY)
     def diffusecolor(self, M):
-        return self.diffuse
-
+        return self.diffuse                     #h = np.where((h0 > 0) & (h0 < h1), h0, h1)
 
 
     def light(self, O, D, d, scene, bounce,tangent):
@@ -161,7 +160,7 @@ class CheckeredSphere(Sphere):
     def diffusecolor(self, M):
         checker = ((M.x * 2).astype(int) % 2) == ((M.z * 2).astype(int) % 2)
         return self.diffuse * checker
-
+                        # checker = ((M.x * 2).astype(int) % 2) == ((M.z * 2).astype(int) % 2)
 def building():
     rgb = vec3
     tangent = vec3
