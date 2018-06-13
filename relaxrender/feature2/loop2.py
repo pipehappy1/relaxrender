@@ -17,7 +17,7 @@ def loop2(ox, oy, d, circles, blockers):
             y0 = oy
         if i == 10:
             x0 = ox - d/2
-            y0 = oy + d/2
+             y0 = oy + d/2
         if i == 11:
             x0 = ox - d / 2
             y0 = oy - d / 2
