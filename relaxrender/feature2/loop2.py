@@ -6,7 +6,7 @@ def loop2(ox, oy, d, circles, blockers):
         if i == 1 or i == 2 or i == 3:
             x0 = ox + d
         if i == 5 or i == 6 or i == 7:
-            x0 = ox - d
+             x0 = ox - d
         if i == 4 or i == 8:
             x0 = ox
         if i == 3 or i == 4 or i == 5:
