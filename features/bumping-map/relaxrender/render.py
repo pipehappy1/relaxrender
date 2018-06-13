@@ -71,162 +71,81 @@ class vec3():
 
 
 rgb = vec3
-
 tangent=vec3
-
 (w, h) = (400, 300)         # Screen size
-
 L = vec3(0, 0.35, -1.)        # Point light position
-
 E = vec3(0., 0.35, -10)     # Eye position
-
 FARAWAY = 1.0e39            # an implausibly huge distance
-
 (low,high)=(0.8,1)
-
-
-
 # O is the ray origin, D is the normalized ray direction.
-
-    # scene is a list of Sphere objects (see
-
-    #  below)
-
-    # bounce is the number of the bounce, starting at zero for camera rays.
-
+# scene is a list of Sphere objects (see
+#  below)
+# bounce is the number of the bounce, starting at zero for camera rays.
 def raytrace(O, D, scene,tangent, bounce = 0):
-
-    
-
     distances = [s.intersect(O, D) for s in scene]
-
     nearest = reduce(np.minimum, distances)
-
     color = rgb(0, 0, 0)
-
     for (s, d) in zip(scene, distances):
-
         hit = (nearest != FARAWAY) & (d == nearest)
-
         if np.any(hit):
-
             dc = extract(hit, d)
-
             Oc = O.extract(hit)
-
             Dc = D.extract(hit)
-
             cc = s.light(Oc, Dc, dc, scene, bounce,tangent)
-
             color += cc.place(hit)
-
     return color
-
-
-
-
-
 class Sphere:
-
     def __init__(self, center, r, diffuse, mirror = 0):
-
         self.c = center
-
         self.r = r
-
         self.diffuse = diffuse
-
         self.mirror = mirror
-
-
-
     def intersect(self, O, D):
-
         b = 2 * D.dot(O - self.c)
-
         c = abs(self.c) + abs(O) - 2 * self.c.dot(O) - (self.r * self.r)
-
         disc = (b ** 2) - (4 * c)
-
         sq = np.sqrt(np.maximum(0, disc))
-
         h0 = (-b - sq) / 2
-
         h1 = (-b + sq) / 2
-
         h = np.where((h0 > 0) & (h0 < h1), h0, h1)
-
         pred = (disc > 0) & (h > 0)
-
         return np.where(pred, h, FARAWAY)
-
-
-
     def diffusecolor(self, M):
-
         return self.diffuse
 
 
 
     def light(self, O, D, d, scene, bounce,tangent):
-
         M = (O + D * d)                         # intersection point
-
         N = (M - self.c) * (1. / self.r)        # normal
-
         toL = (L - M).norm()                    # direction to light
-
         toO = (E - M).norm()                    # direction to ray origin
-
         nudged = M + N * .0001                  # M nudged to avoid itself
-
         length=len(toL.x)
-
         Bumpscale=0.5
-
         if tangent.x.size>length:
-
             tangent.jiequ(length)
-
         else:
-
             print("ss")
-
             nummber=length/tangent.x.size
-
             yushu=length%tangent.x.size
-
             tangent.yanchang(nummber,yushu)
-
         tangent.mul_xy(Bumpscale)
-
         tangent.getZ(tangent.x.size)
-
         if self.r>1:
-
             print("xxx")
-
             tangent=N.copy()
-
         # Shadow: find if the point is shadowed or not.
-
         # This amounts to finding out if M can see the light
-
         light_distances = [s.intersect(nudged, toL) for s in scene]
-
         light_nearest = reduce(np.minimum, light_distances)
-
         seelight = light_distances[scene.index(self)] == light_nearest
-
         # Ambient
-
         color = rgb(0.05, 0.05, 0.05)
-
         # Lambert shading (diffuse)
-
         lv = np.maximum(0,tangent.dot(toL)*-1)
-
         color += self.diffusecolor(M) * lv * seelight
+        
         # Reflection
         if bounce < 2:
             rayD = (D - N * 2 * D.dot(N)).norm()
