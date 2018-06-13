@@ -13,7 +13,7 @@ def loop2(ox, oy, d, circles, blockers):
             y0 = oy + d
         if i == 7 or i == 8 or i == 1:
             y0 = oy - d
-        if i == 2 or i == 6:
+          if i == 2 or i == 6:
             y0 = oy
         if i == 10:
             x0 = ox - d/2
