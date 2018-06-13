@@ -12,7 +12,6 @@ def extract(cond, x):
         return x
     else:
         return np.extract(cond, x)
-
 class vec3():
     def __init__(self, x, y, z):
         (self.x, self.y, self.z) = (x, y, z)
@@ -95,6 +94,7 @@ def raytrace(O, D, scene,tangent, bounce = 0):
             cc = s.light(Oc, Dc, dc, scene, bounce,tangent)
             color += cc.place(hit)
     return color
+
 
 class Sphere:
     def __init__(self, center, r, diffuse, mirror = 0):
