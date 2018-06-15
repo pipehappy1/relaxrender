@@ -31,11 +31,8 @@ def  CatmullClarkSubdivision(faces,num):
         #draw(face_to_lines,line_to_points,points)
         #print("lines:",lines)
         faces=CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
-    lines,line_to_faces,face_to_lines=build_index(faces)
-        #print(line_to_faces,face_to_lines)
-    points,point_to_lines,line_to_points=build_index(lines)
-    #draw(face_to_lines,line_to_points,points)
     return faces
+
 
 def build_index(faces):
     lines=[]
