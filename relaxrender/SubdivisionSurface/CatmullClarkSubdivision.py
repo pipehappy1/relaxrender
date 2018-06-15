@@ -7,6 +7,15 @@ from relaxrender.points import Point,Point3D
 import numpy as np
 #__all__==['CatmullClarkSubdivision']
 
+'''
+    接口函数
+    param：
+        faces : [face,face,...]
+        face:   [line,line,...]
+        line:   [point,point]
+        point: Point
+        num：how many times you want to subdivide
+'''
 def  CatmullClarkSubdivision(faces,num):
     lines=[]
     points=[]
@@ -26,7 +35,7 @@ def  CatmullClarkSubdivision(faces,num):
         #print(line_to_faces,face_to_lines)
     points,point_to_lines,line_to_points=build_index(lines)
     #draw(face_to_lines,line_to_points,points)
-
+    return faces
 
 def build_index(faces):
     lines=[]
