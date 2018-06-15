@@ -25,7 +25,7 @@ pytest --cov-report=html --cov=relaxrender --ignore=tests/test_relaxrender.py te
 # cmd
 D:   # 磁盘号
 cd <项目根目录>
-set PYTHONPATH=./
+set PYTHONPATH=<relaxrender绝对目录>
 python <文件路径>
 ```
 
@@ -33,7 +33,7 @@ python <文件路径>
 
 ```
 cd <项目根目录>
-export PYTHONPATH=./
+export PYTHONPATH=<relaxrender绝对目录>
 python3 <文件路径>
 ```
 
