@@ -1,3 +1,5 @@
+test.py是测试文件，render.py是凹凸映射函数，water2.png是法线纹理，output.jpg是输出。
+
 another offline render.
 
 
