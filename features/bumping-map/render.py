@@ -120,20 +120,19 @@ class Sphere:
         toL = (L - M).norm()                    # direction to light
         toO = (E - M).norm()                    # direction to ray origin
         nudged = M + N * .0001                  # M nudged to avoid itself
-        length=len(toL.x)
-        Bumpscale=0.5
-        if tangent.x.size>length:
+        length = len(toL.x)
+        Bumpscale = 0.5
+        if tangent.x.size > length:
             tangent.jiequ(length)
         else:
             print("ss")
-            nummber=length/tangent.x.size
-            yushu=length%tangent.x.size
+            nummber = length/tangent.x.size
+            yushu = length%tangent.x.size
             tangent.yanchang(nummber,yushu)
         tangent.mul_xy(Bumpscale)
         tangent.getZ(tangent.x.size)
         if self.r>1:
-            print("xxx")
-            tangent=N.copy()
+            tangent = N.copy()
         # Shadow: find if the point is shadowed or not.
         # This amounts to finding out if M can see the light
         light_distances = [s.intersect(nudged, toL) for s in scene]
@@ -144,7 +143,6 @@ class Sphere:
         # Lambert shading (diffuse)
         lv = np.maximum(0,tangent.dot(toL)*-1)
         color += self.diffusecolor(M) * lv * seelight
-        
         # Reflection
         if bounce < 2:
             rayD = (D - N * 2 * D.dot(N)).norm()
@@ -152,6 +150,8 @@ class Sphere:
             color += raytrace(nudged, rayD, scene,tangent2, bounce + 1) * self.mirror
 
         # Blinn-Phong shading (specular)
+        tangent.y = tangent.y * -1
+        tangent.x = tangent.x * -1
         phong =  np.maximum(0,tangent.dot((toL + toO).norm())*-1)
         color += rgb(1, 1, 1) * np.power(np.clip(0,phong, 1),50) * seelight
         return color
@@ -213,6 +213,6 @@ def building():
     list(list([l[0][i][j], l[1][i][j], l[2][i][j]] for j in range(len(l[0][0]))) for i in range(len(l[0])))
     output = np.array(
         list(list([l[0][i][j], l[1][i][j], l[2][i][j]] for j in range(len(l[0][0]))) for i in range(len(l[0]))))
-    imageio.imwrite(r"output.png", output)
+    imageio.imwrite(r"output.jpg", output)
 
     
