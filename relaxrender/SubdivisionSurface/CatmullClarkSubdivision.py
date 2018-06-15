@@ -25,16 +25,16 @@ def  CatmullClarkSubdivision(faces,num):
     line_to_faces={}
     
     for i in range(num):
-        lines,line_to_faces,face_to_lines=build_index(faces)
+        lines,line_to_faces,face_to_lines=_build_index(faces)
         #print(line_to_faces,face_to_lines)
-        points,point_to_lines,line_to_points=build_index(lines)
+        points,point_to_lines,line_to_points=_build_index(lines)
         #draw(face_to_lines,line_to_points,points)
         #print("lines:",lines)
-        faces=CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
+        faces=_CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
     return faces
 
 
-def build_index(faces):
+def _build_index(faces):
     lines=[]
     face_to_lines={}
     line_to_faces={}
@@ -66,7 +66,7 @@ def build_index(faces):
 
     PS：this func is not designed as a interface
 '''
-def CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines):
+def _CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines):
     #print("old_points:",list((p.data[0],p.data[1],p.data[2]) for p in points))
     #print("face_to_lines:",face_to_lines)
     #print("line_to_points:",line_to_points)
@@ -121,21 +121,5 @@ def CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,l
     return re_faces
 
 
-if __name__=='__main__':
-    verts = [(0, 0, 0), (0, 1, 0), (1, 1, 0), (1, 0, 0), (0, 0, 1), (0, 1, 1), (1, 1, 1), (1, 0, 1)]
-    points=list(Point.create(np.array(list(v))) for v in verts)
-    line_to = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]]
-    face_to = [[0,1,2,3],[4,5,6,7],[0,4,8,9],[1,5,9,10],[2,6,10,11],[3,7,11,8]]  
-    lines=[]
-    for lt in line_to:
-        lines.append([])
-        for i in lt:
-            lines[-1].append(points[i])
-    faces=[]
-    for ft in face_to:
-        faces.append([])
-        for i in ft:
-            faces[-1].append(lines[i])
-    CatmullClarkSubdivision(faces,4)
 
 

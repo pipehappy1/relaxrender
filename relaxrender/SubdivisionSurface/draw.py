@@ -3,7 +3,7 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection,Line3DCollection
 import matplotlib.pyplot as plt
 import numpy as np
 from relaxrender.points import Point,Point3D
-from .CatmullClarkSubdivision import CatmullClarkSubdivision_in,build_index
+from .CatmullClarkSubdivision import _CatmullClarkSubdivision_in,_build_index
 def draw(face_to_lines,line_to_points,points):
     verts=list((p.data[0],p.data[1],p.data[2]) for p in points)
     faces=[]
@@ -57,16 +57,17 @@ def test_CatmullClarkSubdivision():
         faces.append([])
         for i in ft:
             faces[-1].append(lines[i])
+    print('test CatmullClarkSubdivision, you should close the current to see the next')
     for i in range(4):
-        lines,line_to_faces,face_to_lines=build_index(faces)
+        lines,line_to_faces,face_to_lines=_build_index(faces)
         #print(line_to_faces,face_to_lines)
-        points,point_to_lines,line_to_points=build_index(lines)
+        points,point_to_lines,line_to_points=_build_index(lines)
         draw(face_to_lines,line_to_points,points)
-        #print("lines:",lines)
-        faces=CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
-    lines,line_to_faces,face_to_lines=build_index(faces)
+        faces=_CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
+        print('subdividing {},and there are {} faces now'.format(i+1,len(faces)))
+    lines,line_to_faces,face_to_lines=_build_index(faces)
     #print(line_to_faces,face_to_lines)
-    points,point_to_lines,line_to_points=build_index(lines)
+    points,point_to_lines,line_to_points=_build_index(lines)
     draw(face_to_lines,line_to_points,points)
 
 if __name__=='__main__':
