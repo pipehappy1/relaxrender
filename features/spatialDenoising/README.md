@@ -6,4 +6,5 @@
 - 待处理图片：test.jpeg 
 - 处理后的图片：result.jpeg    
 - 预期图片：idel_result.bmp
+
   
