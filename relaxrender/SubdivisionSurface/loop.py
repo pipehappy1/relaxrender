@@ -24,15 +24,15 @@ def loop(vertices,faces):
         va=faces[f_i][0]
         vb=faces[f_i][1]
         vc=faces[f_i][2]
-        vp,va,vb,vc,ev0,ev1,ev2,new_index_of_ver=add_edge_vertices(va,vb,vc,edge_vertices,new_index_of_ver)
+        vp,va,vb,vc,ev0,ev1,ev2,new_index_of_ver=_add_edge_vertices(va,vb,vc,edge_vertices,new_index_of_ver)
         edge_vertices[va][vb][0]=ev0
         edge_vertices[va][vb][1]=ev1
         edge_vertices[va][vb][2]=ev2
-        vq,va,vb,vc,ev0,ev1,ev2,new_index_of_ver=add_edge_vertices(vb,vc,va,edge_vertices,new_index_of_ver)
+        vq,va,vb,vc,ev0,ev1,ev2,new_index_of_ver=_add_edge_vertices(vb,vc,va,edge_vertices,new_index_of_ver)
         edge_vertices[va][vb][0]=ev0
         edge_vertices[va][vb][1]=ev1
         edge_vertices[va][vb][2]=ev2
-        vr,va,vb,vc,ev0,ev1,ev2,new_index_of_ver=add_edge_vertices(va,vc,vb,edge_vertices,new_index_of_ver)
+        vr,va,vb,vc,ev0,ev1,ev2,new_index_of_ver=_add_edge_vertices(va,vc,vb,edge_vertices,new_index_of_ver)
         edge_vertices[va][vb][0]=ev0
         edge_vertices[va][vb][1]=ev1
         edge_vertices[va][vb][2]=ev2
@@ -78,7 +78,7 @@ def loop(vertices,faces):
 
     return new_vertices,new_faces
 
-def add_edge_vertices(va,vb,vc,edge_vertices,new_index_of_ver):
+def _add_edge_vertices(va,vb,vc,edge_vertices,new_index_of_ver):
     if (va>vb): 
         v_tmp = va  
         va = vb  
