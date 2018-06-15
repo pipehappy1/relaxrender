@@ -1,20 +1,24 @@
 '''
-    TODO: finish Catmull Clark Subdivision
+    This module uses Catmull Clark Subdivision
+    The interface is CatmullClarkSubdivision function
 '''
 
-from relaxrender.triangle import Triangle,Triangles
-from relaxrender.points import Point,Point3D
+from ..triangle import Triangle,Triangles
+from ..points import Point,Point3D
 import numpy as np
-#__all__==['CatmullClarkSubdivision']
+
+__author__="X-wenhao"
 
 '''
-    接口函数
+    interface
     param：
         faces : [face,face,...]
         face:   [line,line,...]
         line:   [point,point]
         point: Point
         num：how many times you want to subdivide
+    return: 
+        faces
 '''
 def  CatmullClarkSubdivision(faces,num):
     lines=[]
@@ -33,7 +37,10 @@ def  CatmullClarkSubdivision(faces,num):
         faces=_CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
     return faces
 
-
+'''
+    to build index among face line and point
+    I design this function and try to form index after each division to reduce time,but fail
+'''
 def _build_index(faces):
     lines=[]
     face_to_lines={}

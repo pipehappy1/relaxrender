@@ -1,9 +1,17 @@
+"""
+    this module include function to draw,which is used during test
+    this module is also used to test CatmullClarkSubdivison ,just run as following
+        python -m relaxrender.Subdivision.draw
+"""
+
 from mpl_toolkits.mplot3d import Axes3D  
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection,Line3DCollection
 import matplotlib.pyplot as plt
 import numpy as np
-from relaxrender.points import Point,Point3D
+from ..points import Point,Point3D
 from .CatmullClarkSubdivision import _CatmullClarkSubdivision_in,_build_index
+
+__author__="X-wenhao"
 def draw(face_to_lines,line_to_points,points):
     verts=list((p.data[0],p.data[1],p.data[2]) for p in points)
     faces=[]
