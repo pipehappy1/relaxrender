@@ -193,8 +193,3 @@ def _change_point(point,color):
     new_point.color=color
     return new_point
 
-TODO:
-Verify teacher's test and complete it.
-Refer to A group's interface.
-Figure out where to use numpy.
-'''
