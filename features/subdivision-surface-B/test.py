@@ -1,7 +1,7 @@
 import numpy as np
 import unittest
 from relaxrender.points import Point3D, Point
-
+from DOO-SABIN import *
 
 """
     point_test_*:   Point3D
