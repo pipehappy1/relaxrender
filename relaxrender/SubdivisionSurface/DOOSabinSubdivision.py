@@ -19,20 +19,24 @@ class Face:
 
 
 """
-    DOO_Sabin(faces,times)：
+    DOO_Sabin(faces,times):
     input:faces(list) , subdivision times
     output:new faces(list)
     
     
     
-    faces ————list of face
-    face  ———— points ——— list of point
+    faces :list of face
+    face  : points : list of point
 """
 
 def DOO_Sabin(faces,times):
+    new_faces=[]
+    for f in faces:
+        n_f=Face(f)
+        new_faces.append(n_f)
     for i in range(0,times):
-        _DOO_Sabin_single_time(faces)
-    return faces
+        _DOO_Sabin_single_time(new_faces)
+    return new_faces
 
 
 # class points_doo:
@@ -176,7 +180,7 @@ def _print_points(ps):
 '''
 debug:print the faces of the object
 '''
-def _print_obj(faces):
+def print_obj(faces):
     i=0
     for f in faces:
         i=i+1
