@@ -3,8 +3,8 @@
     The interface is CatmullClarkSubdivision function
 '''
 
-from ..triangle import Triangle,Triangles
-from ..points import Point,Point3D
+from .triangle import Triangle,Triangles
+from .points import Point,Point3D
 import numpy as np
 
 __author__="X-wenhao"
