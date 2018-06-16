@@ -18,6 +18,27 @@ class Face:
         self.points = points
 
 
+"""
+    DOO_Sabin(faces,times):
+    input:faces(list) , subdivision times
+    output:new faces(list)
+    
+    
+    
+    faces :list of face
+    face  : points : list of point
+"""
+
+def DOO_Sabin(faces,times):
+    new_faces=[]
+    for f in faces:
+        n_f=Face(f)
+        new_faces.append(n_f)
+    for i in range(0,times):
+        _DOO_Sabin_single_time(new_faces)
+    return new_faces
+
+
 # class points_doo:
 #     def __init__(self,main_point,points):
 #         self.main_point=main_point
@@ -25,21 +46,31 @@ class Face:
 #     def add_point(self,p):
 #         self.points.append(p)
 
-def DOO_Sabin_single_time(faces):
+
+def _change_faces(x_faces):
+    s_faces=[]
+    for f in x_faces:
+        new_points=[]
+        for l in f:
+            new_points.append(l[0])
+            new_points.append(l[1])
+        new_f=new_points
+        s_faces.append(new_f)
+    return s_faces
+
+
+
+def _DOO_Sabin_single_time(faces):
     for f in faces:
-        f = get_new_face(f)
+        f = _get_new_face(f)
     for points_ds in points_doos:
         new_face = Face(points_ds)
         faces.append(new_face)
     return faces
 
-def DOO_Sabin(faces,times):
-    for i in range(0,times):
-        DOO_Sabin_single_time(faces)
-    return faces
 
-def get_face_point(face):
-    face_point = get_average_point(face.points)
+def _get_face_point(face):
+    face_point = _get_average_point(face.points)
     return face_point
 
 
@@ -48,8 +79,8 @@ for each point in a face, there would be a new point
 '''
 
 
-def get_new_face(face):
-    face_point = get_face_point(face)
+def _get_new_face(face):
+    face_point = _get_face_point(face)
     new_face_points = []
     for p in face.points:
 
@@ -73,10 +104,10 @@ def get_new_face(face):
             tmp1 = face.points.index(p) - 1
             tmp2 = face.points.index(p) + 1
 
-        last_average_line = get_average_point([p, face.points[tmp1]])
-        next_average_line = get_average_point([p, face.points[tmp2]])
+        last_average_line = _get_average_point([p, face.points[tmp1]])
+        next_average_line = _get_average_point([p, face.points[tmp2]])
 
-        new_face_point = get_average_point([p, face_point, last_average_line, next_average_line])
+        new_face_point = _get_average_point([p, face_point, last_average_line, next_average_line])
 
         new_face_points.append(new_face_point)
 
@@ -107,7 +138,7 @@ def get_new_face(face):
     return new_face
 
 
-def get_average_point(points):
+def _get_average_point(points):
     x_sum = 0
     y_sum = 0
     z_sum = 0
@@ -124,7 +155,7 @@ debug:print the x,y,z of the point
 '''
 
 
-def print_point(p):
+def _print_point(p):
     tmp = [p.data[0], p.data[1], p.data[2]]
     print(tmp)
 
@@ -132,17 +163,17 @@ def print_point(p):
 '''
 debug:print the points of the face
 '''
-def print_face(f):
+def _print_face(f):
     for p in f.points:
-        print_point(p)
+        _print_point(p)
 
 
 '''
 debug:print the points
 '''
-def print_points(ps):
+def _print_points(ps):
     for p in ps:
-        print_point(p)
+        _print_point(p)
 
 
 
@@ -154,35 +185,14 @@ def print_obj(faces):
     for f in faces:
         i=i+1
         print("face",i)
-        print_face(f)
+        _print_face(f)
 
-'''
-if __name__ == '__main__':
-    point_test_1 = Point3D(4, 4, 4)
-    point_test_2 = Point3D(4, 4,0)
-    point_test_3 = Point3D(4, 0, 4)
-    point_test_4 = Point3D(4, 0, 0)
-    point_test_5 = Point3D(0, 4, 4)
-    point_test_6 = Point3D(0, 4, 0)
-    point_test_7 = Point3D(0, 0, 4)
-    point_test_8 = Point3D(0, 0, 0)
-    face_test_1 = Face([point_test_1, point_test_2, point_test_3, point_test_4])
-    face_test_2 = Face([point_test_1, point_test_5, point_test_6, point_test_2])
-    face_test_3 = Face([point_test_1, point_test_5, point_test_7, point_test_3])
-    face_test_4 = Face([point_test_3, point_test_4, point_test_8, point_test_7])
-    face_test_5 = Face([point_test_5, point_test_6, point_test_8, point_test_7])
-    face_test_6 = Face([point_test_2, point_test_4, point_test_8, point_test_6])
-    faces_test=[face_test_1,face_test_2,face_test_3,face_test_4,face_test_5,face_test_6]
-    print_obj(DOO_Sabin(faces_test,6))
-    # points_test=[point_test_1,point_test_2,point_test_3,point_test_4]
-    # face_test=Face(points_test)
-    # print_face(get_new_face(face_test))
-    # for ps in points_doos:
-    #     print_points(ps)
-    #
-'''
 
-'''
+def _change_point(point,color):
+    new_point=Point(point)
+    new_point.color=color
+    return new_point
+
 TODO:
 Verify teacher's test and complete it.
 Refer to A group's interface.
