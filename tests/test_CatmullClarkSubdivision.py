@@ -31,7 +31,17 @@ class TestCatmullClarkSubdivision(unittest.TestCase):
                 faces[-1].append(lines[i])
         lines,line_to_faces,face_to_lines=_build_index(faces)
         points,point_to_lines,line_to_points=_build_index(lines)
-        self.assertTrue(_CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines))
+
+        for i in range(4):
+            lines,line_to_faces,face_to_lines=_build_index(faces)
+            #print(line_to_faces,face_to_lines)
+            points,point_to_lines,line_to_points=_build_index(lines)
+            #draw(face_to_lines,line_to_points,points)
+            self.assertTrue(_CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines))
+            faces=_CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
+            print('subdividing {},and there are {} faces now'.format(i+1,len(faces)))
+
+        
         
 
 def draw(face_to_lines,line_to_points,points):
@@ -72,33 +82,5 @@ def draw(face_to_lines,line_to_points,points):
     ax.set_zlim3d(-0.5, 1.5)  
     plt.show()
 
-def test_CatmullClarkSubdivision():
-    verts = [(0, 0, 0), (0, 1, 0), (1, 1, 0), (1, 0, 0), (0, 0, 1), (0, 1, 1), (1, 1, 1), (1, 0, 1)]
-    points=list(Point.create(np.array(list(v))) for v in verts)
-    line_to = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]]
-    face_to = [[0,1,2,3],[4,5,6,7],[0,4,8,9],[1,5,9,10],[2,6,10,11],[3,7,11,8]]  
-    lines=[]
-    for lt in line_to:
-        lines.append([])
-        for i in lt:
-            lines[-1].append(points[i])
-    faces=[]
-    for ft in face_to:
-        faces.append([])
-        for i in ft:
-            faces[-1].append(lines[i])
-    print('test CatmullClarkSubdivision, you should close the current to see the next')
-    for i in range(4):
-        lines,line_to_faces,face_to_lines=_build_index(faces)
-        #print(line_to_faces,face_to_lines)
-        points,point_to_lines,line_to_points=_build_index(lines)
-        draw(face_to_lines,line_to_points,points)
-        faces=_CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
-        print('subdividing {},and there are {} faces now'.format(i+1,len(faces)))
-    lines,line_to_faces,face_to_lines=_build_index(faces)
-    #print(line_to_faces,face_to_lines)
-    points,point_to_lines,line_to_points=_build_index(lines)
-    draw(face_to_lines,line_to_points,points)
 
-if __name__=='__main__':
-    test_CatmullClarkSubdivision()
+

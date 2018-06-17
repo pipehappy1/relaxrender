@@ -1,5 +1,5 @@
 import numpy as np
-from points import Point3D, Point
+from .points import Point3D, Point
 
 # points_doos=list()
 # points_current=list()
@@ -22,9 +22,9 @@ class Face:
     DOO_Sabin(faces,times):
     input:faces(list) , subdivision times
     output:new faces(list)
-    
-    
-    
+
+
+
     faces :list of face
     face  : points : list of point
 """
