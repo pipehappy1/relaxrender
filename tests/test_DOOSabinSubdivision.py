@@ -1,7 +1,5 @@
-import numpy as np
 import unittest
-from relaxrender.points import Point3D, Point
-from relaxrender.SubdivisionSurface.DOOSabinSubdivision import *
+from relaxrender.DOOSabinSubdivision import *
 
 """
     point_test_*:   Point3D
