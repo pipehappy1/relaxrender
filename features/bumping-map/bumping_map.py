@@ -83,8 +83,8 @@ def raytrace(O, D, scene, bounce = 0):
             color += cc.place(hit)
     return color
 
-    class Sphere:
-        def __init__(self, center, r, diffuse, mirror = 0.5):
+class Sphere:
+    def __init__(self, center, r, diffuse, mirror = 0.5):
         self.c = center
         self.r = r
         self.diffuse = diffuse
