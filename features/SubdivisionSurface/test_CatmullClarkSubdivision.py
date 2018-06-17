@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection,Line3DCollection
 import matplotlib.pyplot as plt
 import numpy as np
 from relaxrender.points import Point,Point3D
-from relaxrender.CatmullClarkSubdivision import _CatmullClarkSubdivision_in,_build_index
+from SubdivisionSurface.CatmullClarkSubdivision import _CatmullClarkSubdivision_in,_build_index
 
 __author__="X-wenhao"
 

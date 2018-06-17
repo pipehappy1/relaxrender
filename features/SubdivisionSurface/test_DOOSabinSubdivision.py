@@ -1,5 +1,5 @@
 import unittest
-from relaxrender.DOOSabinSubdivision import *
+from SubdivisionSurface.DOOSabinSubdivision import *
 
 """
     point_test_*:   Point3D

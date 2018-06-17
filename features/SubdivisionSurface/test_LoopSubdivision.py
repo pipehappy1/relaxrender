@@ -1,5 +1,5 @@
 import unittest
-from relaxrender.LoopSubdivision import *
+from SubdivisionSurface.LoopSubdivision import *
 
 
 '''

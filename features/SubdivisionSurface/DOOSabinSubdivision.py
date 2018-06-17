@@ -1,5 +1,5 @@
 import numpy as np
-from .points import Point3D, Point
+from relaxrender.points import Point3D, Point
 
 # points_doos=list()
 # points_current=list()
