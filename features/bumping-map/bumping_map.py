@@ -46,20 +46,25 @@ L = vec3(0, 0.9, 1)        #光源位置
 E = vec3(0., 0.35, -1)     #视野位置
 FARAWAY = 1.0e39            #无限长度
 
+#读取法线贴图
 normalsource = imageio.imread(r"normal.png");
 normalMap = np.array(normalsource)
+#取法线贴图分量
 normalX = normalsource.take([0], axis = 2)
 normalX = np.array(normalX).reshape(normalX.size)
 normalY = normalsource.take([1], axis = 2)
 normalY = np.array(normalY).reshape(normalY.size)
 normalZ = normalsource.take([2], axis = 2)
 normalZ = np.array(normalZ).reshape(normalZ.size)
+#输出测试
 print (normalX)
 print (normalY)
 print (normalZ)
+#将法线贴图的数据转化为归一化的法线数据
 normalX = (normalX * 2 / 255) - 1
 normalY = (normalY * 2 / 255) - 1
 normalZ = (normalZ * 2 / 255) - 1
+#输出测试
 print (normalX.size)
 print (normalY.size)
 print (normalZ.size)
@@ -113,7 +118,7 @@ class Sphere:
         N = vec3(normal_x, normal_y, normal_z)
         toL = (L - M).norm()                    # 光线方向
         toO = (E - M).norm()                    # 视野射线方向
-        nudged = M + N * .0001                  # M nudged to avoid itself
+        nudged = M + N * .0001
 
         # 阴影并计算交点是否在阴影内
         light_distances = [s.intersect(nudged, toL) for s in scene]
@@ -126,17 +131,11 @@ class Sphere:
         #兰伯特光照
         lv = np.maximum(N.dot(toL) * -1, 0)
         color += self.diffusecolor(M) * lv * seelight
-
-        # Blinn-Phong shading (specular)
-        #phong = N.dot((toL + toO).norm()) * -1
-        #color += rgb(1, 1, 1) * np.power(np.clip(0, phong, 1), 50) * seelight
         return color
 def draw():
     scene = [ Sphere(vec3(0, .1, .5), .6, rgb(0.7, 0.7, 0.7))]
-    #rgb(0.221, 0.169, 0.105)
 
     r = float(w) / h
-    # Screen coordinates: x0, y0, x1, y1.
     S = (-1., 1. / r + .25, 1., -1. / r + .25)
     x = np.tile(np.linspace(S[0], S[2], w), h)
     y = np.repeat(np.linspace(S[1], S[3], h), w)
