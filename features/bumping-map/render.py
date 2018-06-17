@@ -214,5 +214,5 @@ def building():
     output = np.array(
         list(list([l[0][i][j], l[1][i][j], l[2][i][j]] for j in range(len(l[0][0]))) for i in range(len(l[0]))))
     imageio.imwrite(r"output.jpg", output)
-
+    return 1
     
