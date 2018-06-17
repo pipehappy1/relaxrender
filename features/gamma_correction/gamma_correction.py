@@ -1,7 +1,7 @@
 ﻿from skimage import data,io
 import matplotlib.pyplot as plt
 import numpy as np
-#I am sorry fofr what I've done
+#the end
 class Gamma_correction():
 
 	def gamma_correction(self,img,gamma):
