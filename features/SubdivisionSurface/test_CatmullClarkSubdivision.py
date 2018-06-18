@@ -3,12 +3,12 @@
     this module is also used to test CatmullClarkSubdivison 
 """
 import unittest
-from mpl_toolkits.mplot3d import Axes3D  
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection,Line3DCollection
-import matplotlib.pyplot as plt
+#from mpl_toolkits.mplot3d import Axes3D  
+#from mpl_toolkits.mplot3d.art3d import Poly3DCollection,Line3DCollection
+#import matplotlib.pyplot as plt
 import numpy as np
 from relaxrender.points import Point,Point3D
-from SubdivisionSurface.CatmullClarkSubdivision import _CatmullClarkSubdivision_in,_build_index
+from SubdivisionSurface.CatmullClarkSubdivision import _CatmullClarkSubdivision_in,_build_index,CatmullClarkSubdivision
 
 __author__="X-wenhao"
 
@@ -38,7 +38,8 @@ class TestCatmullClarkSubdivision(unittest.TestCase):
         
         lines,line_to_faces,face_to_lines=_build_index(faces)
         points,point_to_lines,line_to_points=_build_index(lines)
-
+        self.assertTrue(CatmullClarkSubdivision(faces,1))
+        '''
         for i in range(4):
             lines,line_to_faces,face_to_lines=_build_index(faces)
             #print(line_to_faces,face_to_lines)
@@ -47,10 +48,10 @@ class TestCatmullClarkSubdivision(unittest.TestCase):
             self.assertTrue(_CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines))
             faces=_CatmullClarkSubdivision_in(faces,lines,points,face_to_lines,line_to_points,line_to_faces,point_to_lines)
             print('subdividing {},and there are {} faces now'.format(i+1,len(faces)))
-
+        '''
         
         
-
+'''
 def draw(face_to_lines,line_to_points,points):
     verts=list((p.data[0],p.data[1],p.data[2]) for p in points)
     faces=[]
@@ -88,6 +89,6 @@ def draw(face_to_lines,line_to_points,points):
     ax.set_zlabel('Z')  
     ax.set_zlim3d(-0.5, 1.5)  
     plt.show()
-
+'''
 
 

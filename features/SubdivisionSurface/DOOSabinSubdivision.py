@@ -46,7 +46,7 @@ def DOO_Sabin(faces,times):
 #     def add_point(self,p):
 #         self.points.append(p)
 
-
+'''
 def _change_faces(x_faces):
     s_faces=[]
     for f in x_faces:
@@ -57,7 +57,7 @@ def _change_faces(x_faces):
         new_f=new_points
         s_faces.append(new_f)
     return s_faces
-
+'''
 
 
 def _DOO_Sabin_single_time(faces):
@@ -151,35 +151,18 @@ def _get_average_point(points):
 
 
 '''
-debug:print the x,y,z of the point
-'''
-
-
 def _print_point(p):
     tmp = [p.data[0], p.data[1], p.data[2]]
     print(tmp)
 
-
-'''
-debug:print the points of the face
-'''
 def _print_face(f):
     for p in f.points:
         _print_point(p)
 
-
-'''
-debug:print the points
-'''
 def _print_points(ps):
     for p in ps:
         _print_point(p)
 
-
-
-'''
-debug:print the faces of the object
-'''
 def print_obj(faces):
     i=0
     for f in faces:
@@ -187,12 +170,11 @@ def print_obj(faces):
         print("face",i)
         _print_face(f)
 
-
 def _change_point(point,color):
     new_point=Point(point)
     new_point.color=color
     return new_point
-
+'''
 
 
 """

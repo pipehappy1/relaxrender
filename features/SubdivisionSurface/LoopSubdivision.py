@@ -68,13 +68,14 @@ def loop(vertices,faces):
             ov_adj=adj_ver[ov][i]
             if((ov_adj>ov and edge_vertices[ov][ov_adj][2]==0) or (ov_adj<ov and edge_vertices[ov_adj][ov][2]==0)):
                 adj_boundary_ver.append(ov_adj)
-        
+        '''
         if(len(adj_boundary_ver)==2):
             new_vertices[ov]=[3/4*vertices[ov][i]+1/8*vertices[adj_boundary_ver[0]][i]\
             +1/8*vertices[adj_boundary_ver[1]][i] for i in range(3)]
         else:
-            beta = 1/k*( 5/8 - (3/8 + 1/4*cos(2*pi/k))**2 )  
-            new_vertices[ov]=[((1-k*beta)*vertices[ov][j] + beta*(sum(vertices[i][j] for i in adj_ver[ov]))) for j in range(3)]
+        '''
+        beta = 1/k*( 5/8 - (3/8 + 1/4*cos(2*pi/k))**2 )  
+        new_vertices[ov]=[((1-k*beta)*vertices[ov][j] + beta*(sum(vertices[i][j] for i in adj_ver[ov]))) for j in range(3)]
 
     return new_vertices,new_faces
 
@@ -98,7 +99,7 @@ def _add_edge_vertices(va,vb,vc,edge_vertices,new_index_of_ver):
     return new_ver_index,va,vb,vc,edge_vertices_va_vb_0,edge_vertices_va_vb_1,edge_vertices_va_vb_2,new_index_of_ver
     
 
-vertices = [[10,10,10],[-100,10,-10],[-100,-10,10],[10,-10,-10]] 
-faces = [[0,1,2],[0,2,3],[0,3,1],[3,2,1]]
+#vertices = [[10,10,10],[-100,10,-10],[-100,-10,10],[10,-10,-10]] 
+#faces = [[0,1,2],[0,2,3],[0,3,1],[3,2,1]]
 
-print(loop(vertices,faces))
+#print(loop(vertices,faces))

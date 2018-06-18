@@ -37,4 +37,4 @@ class TestDOOSabinSubdivision(unittest.TestCase):
         face_test_5 = [point_test_5, point_test_6, point_test_8, point_test_7]
         face_test_6 = [point_test_2, point_test_4, point_test_8, point_test_6]
         faces_test = [face_test_1, face_test_2, face_test_3, face_test_4, face_test_5, face_test_6]
-        DOO_Sabin(faces_test, 6)
+        DOO_Sabin(faces_test, 1)
