@@ -24,15 +24,15 @@ class Gamma_correction():
 				img1[x,y,1] = gamma_table[img[x,y,1]]
 				#B
 				img1[x,y,2] = gamma_table[img[x,y,2]]
-	
-		fig = plt.figure()
-		ax1 = fig.add_subplot(211)
-		ax1.imshow(img)
-		ax1.set_title("gamma = 1.0")
-	
-		ax2 = fig.add_subplot(212)
-		ax2.imshow(img1)
-		ax2.set_title("gamma = %f" %gamma)
+        #改变gamma值
+        fig = plt.figure()
+        ax1 = fig.add_subplot(211)
+        ax1.imshow(img)
+        ax1.set_title("gamma = 1.0")
+        
+        ax2 = fig.add_subplot(212)
+        ax2.imshow(img1)
+        ax2.set_title("gamma = %f" %gamma)
 		
 		
         #调整三个子图的间距，默认适应
