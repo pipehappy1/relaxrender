@@ -9,6 +9,7 @@ class Gamma_correction():
 
 	def gamma_correction(self,img,gamma):
 
+
 		#-------gamma矫正算法
 		#具体做法先归一化到1，然后gamma作为指数值求出新的像素值再还原
 
@@ -23,9 +24,11 @@ class Gamma_correction():
 		
 		for x in range(img_size[0]):
 			for y in range(img_size[1]):
+
 				#像素点的（0，1，2）通道中分别为该点的r,g,b像素值,4通道为景深此处用不到
 				#通过gamma_table矫正其像素值实现gamma矫正
 				#R（0通道）
+
 				img1[x,y,0] = gamma_table[img[x,y,0]]
 				#G（1通道）
 				img1[x,y,1] = gamma_table[img[x,y,1]]
@@ -47,7 +50,7 @@ class Gamma_correction():
 		#矫正后图片标题
 		ax2.set_title("gamma = %f" %gamma)
 		
-		#调整三个子图的间距，默认适应
+		#调整三个子图的间距，默认适应。
 		plt.tight_layout()
 		#设置显示
 		plt.show()
