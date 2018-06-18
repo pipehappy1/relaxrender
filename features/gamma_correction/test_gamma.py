@@ -5,10 +5,11 @@ import gamma_correction as gamma
 from skimage import data,io
 import matplotlib.pyplot as plt
 import numpy as np
-
+#gamma校正测试
 class Test_gamma_correction(unittest.TestCase):
-	
+
 	#测试gamma_correction函数功能
+
 	def test_gamma_correction(self):
 		
 		img0 = io.imread('1.png')

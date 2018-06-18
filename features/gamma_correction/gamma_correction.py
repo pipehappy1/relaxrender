@@ -1,4 +1,4 @@
-﻿from skimage import data,io
+from skimage import data,io
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -8,8 +8,10 @@ class Gamma_correction():
 
 
 	def gamma_correction(self,img,gamma):
+
 		#-------gamma矫正算法
 		#具体做法先归一化到1，然后gamma作为指数值求出新的像素值再还原
+
 		gamma_table = [np.power(x/255.0,gamma)*255.0 for x in range(256)]
 		gamma_table = np.round(np.array(gamma_table)).astype(np.uint8)
 	
@@ -29,6 +31,7 @@ class Gamma_correction():
 				img1[x,y,1] = gamma_table[img[x,y,1]]
 				#B（2通道）
 				img1[x,y,2] = gamma_table[img[x,y,2]]
+
 	
 		#图形界面，可删
 		#分割两个子图显示原图和gamma矫正后的图
