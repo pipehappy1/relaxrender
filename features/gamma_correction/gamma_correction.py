@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-class Gamma_correction():
+class Gamma_correction(): 
 
 	def gamma_correction(self,img,gamma):
 		#-------gamma矫正算法
@@ -46,5 +46,7 @@ class Gamma_correction():
 		#设置显示
 		plt.show()
 	
+
 		#返回gamma矫正后的图像
 		return img1
+
