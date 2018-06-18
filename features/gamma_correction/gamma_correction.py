@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-class Gamma_correction():
+class Gamma_correction(): 
 
 	def gamma_correction(self,img,gamma):
 		#具体做法先归一化到1，然后gamma作为指数值求出新的像素值再还原-------gamma矫正算法
