@@ -1,7 +1,7 @@
 ﻿from skimage import data,io
 import matplotlib.pyplot as plt
 import numpy as np
-
+ 
 class Gamma_correction():
 
 	def gamma_correction(self,img,gamma):
@@ -36,5 +36,5 @@ class Gamma_correction():
 		#调整三个子图的间距，默认适应
 		plt.tight_layout()
 		plt.show()
-	
+
 		return img1
