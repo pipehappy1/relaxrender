@@ -53,9 +53,7 @@ class Gamma_correction():
 		plt.show()
 
 
-	
-
-	
 
 		#返回gamma矫正后的图像
+
 		return img1
