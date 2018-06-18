@@ -20,6 +20,5 @@ class Test_gamma_correction(unittest.TestCase):
 		#比较两个图片是否相同
 		self.assertEqual(img1.any(),img11.any())
 
-#主函数
 if __name__=='__main__':
 	unittest.main()
