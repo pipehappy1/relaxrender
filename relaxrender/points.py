@@ -47,10 +47,10 @@ class Vector:
     data_width = Point3D.data_width*2 + 1
     
     def __init__(self, p_start, p_end):
-        # p_start and p_end is point3D.
-        # for line, p_start and p_end are two points on the line.
-        # for ray, p_start is the starting point, p_end is some point on the ray.
-        # for segment, p_start is one end point, p_end is the other end point.
+        #  p_start and p_end is point3D.
+        #  for line, p_start and p_end are two points on the line.
+        #  for ray, p_start is the starting point, p_end is some point on the ray.
+        #  for segment, p_start is one end point, p_end is the other end point.
         self.start = p_start
         self.end = p_end
         self.mode = 'real'
