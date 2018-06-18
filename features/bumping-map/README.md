@@ -1,9 +1,9 @@
-加入了 测试文件 test_bumping_map.py
+add test file test_bumping_map.py
 
-加入了 代码 bumping_map
+add code file bumping_map.py
 
-加入了 所需法线纹理图片 normal.png
+add picture normal.png
 
-代码中 所有路径 均为相对路径
+All the paths in this project are relative.
 
-normal为bumping_map 需读取的图片, 如更改文件目录, 需重新修改文件路径
+Note:normal.png is needed for bumping_map.py. If you want to change the file catalog, please remodify the file path in bumping_map.py.
