@@ -13,6 +13,6 @@ class Test_gamma_correction(unittest.TestCase):
 		img1 = gamma.Gamma_correction().gamma_correction(img0,0.3)
 		
 		self.assertEqual(img1.any(),img11.any())
-
+	
 if __name__=='__main__':
 	unittest.main()
