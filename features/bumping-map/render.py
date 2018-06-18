@@ -47,10 +47,6 @@ class vec3():
         np.place(r.y, cond, self.y)
         np.place(r.z, cond, self.z)
         return r
-    def jiequ(self,length):
-        self.x=self.x[:length]
-        self.y = self.y[:length]
-        self.z = self.z[:length]
     def yanchang(self,nummber,yushu):
         x2 = self.x[:yushu]
         y2 = self.y[:yushu]
@@ -58,9 +54,9 @@ class vec3():
         self.x=np.tile(self.x,nummber)
         self.y = np.tile(self.y, nummber)
         self.z = np.tile(self.z, nummber)
-        self.x = np.r_(self.x, x2)
-        self.y = np.r_(self.y, y2)
-        self.z = np.r_(self.z, z2)
+        self.x = np.r_[self.x, x2]
+        self.y = np.r_[self.y, y2]
+        self.z = np.r_[self.z, z2]
     def copy(self):
         x=self.x.copy()
         y=self.y.copy()
@@ -122,17 +118,12 @@ class Sphere:
         nudged = M + N * .0001                  # M nudged to avoid itself
         length = len(toL.x)
         Bumpscale = 0.5
-        if tangent.x.size > length:
-            tangent.jiequ(length)
-        else:
-            print("ss")
-            nummber = length/tangent.x.size
-            yushu = length%tangent.x.size
-            tangent.yanchang(nummber,yushu)
+        nummber = length // tangent.x.size
+        yushu = length % tangent.x.size
+        tangent.yanchang(nummber, yushu)
         tangent.mul_xy(Bumpscale)
         tangent.getZ(tangent.x.size)
-        if self.r>1:
-            tangent = N.copy()
+
         # Shadow: find if the point is shadowed or not.
         # This amounts to finding out if M can see the light
         light_distances = [s.intersect(nudged, toL) for s in scene]
@@ -155,12 +146,6 @@ class Sphere:
         phong =  np.maximum(0,tangent.dot((toL + toO).norm())*-1)
         color += rgb(1, 1, 1) * np.power(np.clip(0,phong, 1),50) * seelight
         return color
-
-class CheckeredSphere(Sphere):
-    def diffusecolor(self, M):
-        checker = ((M.x * 2).astype(int) % 2) == ((M.z * 2).astype(int) % 2)
-        return self.diffuse * checker
-                        # checker = ((M.x * 2).astype(int) % 2) == ((M.z * 2).astype(int) % 2)
 def building():
     rgb = vec3
     tangent = vec3
@@ -193,9 +178,7 @@ def building():
     tangent = vec3(x, y, z)
 
     scene = [
-        # Sphere(vec3(.75, .1, 1.), .6, rgb(0, 0, 1)),
         Sphere(vec3(0, .1, 0.5), .6, rgb(.221, .169, .105)),
-        # CheckeredSphere(vec3(0,-99999.5, 0), 99999, rgb(.75, .75, .75), 0.25),
     ]
     # r is the result of
     r = float(w) / h
