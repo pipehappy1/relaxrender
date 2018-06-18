@@ -17,9 +17,9 @@ class TestLineDictionary(unittest.TestCase):
         self.LineDictionary.create_kernel(dim=self.dim, angle=self.angle[3])
 
 
-def runTest():
-    if __name__ == "__main__":
-        unittest.main()
-
-
-runTest()
+# def runTest():
+#     if __name__ == "__main__":
+#         unittest.main()
+#
+#
+# runTest()

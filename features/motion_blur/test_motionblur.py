@@ -39,12 +39,12 @@ class TestMotionBlur(unittest.TestCase):
         self.linear_motion_blur.randomAngle(kerneldim=self.dim)
 
 
-def runTest():
-    if __name__ == "__main__":
-        unittest.main()
-
-
-runTest()
+# def runTest():
+#     if __name__ == "__main__":
+#         unittest.main()
+#
+#
+# runTest()
 
 # img = imageio.imread('./picture_test.jpg')  # shape of img is (682,1023,3)
 # area = (40, 681, 217, 766)
