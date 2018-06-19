@@ -1,4 +1,4 @@
-#unittest为测试用的库
+﻿#unittest为测试用的库
 import unittest
 
 import gamma_correction as gamma
@@ -21,5 +21,3 @@ class Test_gamma_correction(unittest.TestCase):
 		#比较两个图片是否相同
 		self.assertEqual(img1.any(),img11.any())
 
-if __name__=='__main__':
-	unittest.main()
