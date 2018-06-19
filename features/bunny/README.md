@@ -1,3 +1,3 @@
-ÐèÒªÁ½¸öµÚÈý·½°ü£º
+éœ€è¦ä¸¤ä¸ªç¬¬ä¸‰æ–¹åŒ…
 pygame
 pyopengl
