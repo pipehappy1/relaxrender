@@ -18,3 +18,6 @@ def blur(img,dimg,L=30):
           elif dimg[k,j,0] > 2*L:               
             img[k,j] = blured2[k,j]
           elif dimg[k,j,0] > L:      
+            img[k,j] = blured1[k,j]
+      print("Blur successful!")
+      return img
