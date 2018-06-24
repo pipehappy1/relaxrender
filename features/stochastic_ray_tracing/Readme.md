@@ -10,9 +10,9 @@
 
 * 覆盖率截图
 
-   ![](./Some-Display-Photo\TIM图片20180624233538.png)
+   ![](./Some-Display-Photo/TIM图片20180624233538.png)
 
-  ![](./Some-Display-Photo\TIM图片20180624233547.png)
+  ![](./Some-Display-Photo/TIM图片20180624233547.png)
 
 
 * 自己实现的向量类，预算过程未使用基本包外的包
