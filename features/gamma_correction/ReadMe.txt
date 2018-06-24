@@ -21,3 +21,8 @@
 洪妍   707554736
 艾雨晨 akah   (与老师的excel表格不同）
 罗翊峰 MagiCatz
+
+组号：第7组
+项目名：Gamma_correction
+Github仓库链接：https://github.com/LWJ312/relaxrender
+自己仓库的分支：bgroup
