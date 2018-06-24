@@ -1,3 +1,5 @@
+Quasi-Monte Carlo   b组
+
 用拟蒙特卡罗方法实现半色调技术
 
 仓库链接 https://github.com/lqm0408/relaxrender
