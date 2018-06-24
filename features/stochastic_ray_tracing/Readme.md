@@ -3,8 +3,16 @@
 
 
 * 在**test_main.py**函数钟实现渲染
-  * 直接运行
+  * 直接运行pytest --cov-report=html --cov=stochastic_ray_tracing stochastic_ray_tracing\test_main.py
+  * 如今分辨率是100x80,测试覆盖率使用
+  * 如果想要渲染出图片能看，请在entrance.py中将**iResolution**修改为800x600，渲染时间为20分钟左右
+  * 渲染的图片就在自身目录下，output.bmp
 
+* 覆盖率截图
+
+   ![](./Some-Display-Photo\TIM图片20180624233538.png)
+
+  ![](./Some-Display-Photo\TIM图片20180624233547.png)
 
 
 * 自己实现的向量类，预算过程未使用基本包外的包

@@ -6,7 +6,7 @@ from time import time
 import math as mt
 
 #分辨率
-iResolution=md.Vector2(800,640)
+iResolution=md.Vector2(100,80)
 #采样点个数
 SUB_SAMPLES=2
 #最大深度
@@ -340,7 +340,7 @@ def ray_tracing():
             toBMPColor(bmpColors[y*iResolution.x+x],c)
         y=y+1
 
-    bmp.saveBitmap(iResolution.x,iResolution.y,bmpColors,"output-800_640.bmp")
+    bmp.saveBitmap(iResolution.x,iResolution.y,bmpColors,"output.bmp")
 
     timer=time()-timer
     print("\nsuccess!\nuse time:\t"+str(timer)+" s")

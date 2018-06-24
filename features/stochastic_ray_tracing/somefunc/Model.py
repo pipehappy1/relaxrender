@@ -271,11 +271,11 @@ class Ray:
         else:
             return 0        
 
-if __name__=="__main__":
-    print(FORWARD_VECTOR3.x)
-    print(FORWARD_VECTOR3.y)
-    print(FORWARD_VECTOR3.z)
-    c=FORWARD_VECTOR3.MinusVector3(BACK_VECTOR3)
-    print(c.x)
-    print(c.y)
-    print(c.z)
+# if __name__=="__main__":
+    # print(FORWARD_VECTOR3.x)
+    # print(FORWARD_VECTOR3.y)
+    # print(FORWARD_VECTOR3.z)
+    # c=FORWARD_VECTOR3.MinusVector3(BACK_VECTOR3)
+    # print(c.x)
+    # print(c.y)
+    # print(c.z)
