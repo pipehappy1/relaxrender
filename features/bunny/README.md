@@ -9,9 +9,11 @@
 打开 控制台 , cd 到项目根目录，之后设置 临时环境变量 PYTHONPATH 为当前目录，然后测试覆盖率
 
 cd <项目根目录>
+
 WINDOWS
 
 set PYTHONPATH=<relaxrender绝对目录>
+
 Linux
 
 export PYTHONPATH=<relaxrender绝对目录>
