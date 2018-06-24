@@ -1,7 +1,11 @@
 # spatial denoising
+
 ## 空间去噪
+
 #### 测试方法：运行test_spatialDenoising.py文件
+
 #### 测试覆盖率方法
+
 打开 控制台 , cd 到项目根目录，之后设置 临时环境变量 PYTHONPATH 为当前目录，然后测试覆盖率
 ```bash
 cd <项目根目录>

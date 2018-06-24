@@ -65,3 +65,5 @@ class ClearNoise:
         img.close()
 
         return (pix_1, pix_2,image.size)
+
+
