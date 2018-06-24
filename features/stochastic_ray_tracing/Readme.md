@@ -1,5 +1,12 @@
 # B Group stochastic-ray-tracing
 
+
+
+* 在**test_main.py**函数钟实现渲染
+  * 直接运行
+
+
+
 * 自己实现的向量类，预算过程未使用基本包外的包
 
   * 预算结果比较缓慢。如果需要得出比较好的图，大概要渲染2小时左右
@@ -11,3 +18,17 @@
 * 图片演示(目标结果)
   * ![800-640-2-4](./Release-Photo/800-600-2-4.bmp)
   * `以上是800x640分辨率，在两个采样点，最大深度为四的情况下的图。跑了20分钟在本地。`
+
+
+
+
+
+
+
+其他一些效果图（渲染时间长）
+
+![](./Release-Photo/output_betterPerformance.bmp)
+
+![](./Release-Photo/output_BRDF.bmp)
+
+![1200-800-2-4](./Release-Photo/1200-800-2-4.bmp)

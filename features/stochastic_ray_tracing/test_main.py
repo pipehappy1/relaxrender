@@ -340,7 +340,7 @@ def main():
             toBMPColor(bmpColors[y*iResolution.x+x],c)
         y=y+1
 
-    bmp.saveBitmap(iResolution.x,iResolution.y,bmpColors,"output-specmost-2.bmp")
+    bmp.saveBitmap(iResolution.x,iResolution.y,bmpColors,"output-800_640.bmp")
 
     timer=time()-timer
     print("\nsuccess!\nuse time:\t"+str(timer)+" s")
