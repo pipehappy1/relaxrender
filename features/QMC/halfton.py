@@ -49,6 +49,27 @@ class Halftone:
         outfile = "%s%s%s" % (f, filename_add, e)
         new.save(outfile)
         
+    def gcr(self, im, percentage):
+        """
+        gcr: 灰色组件更换
+            返回从CMY通道中移除百分比灰色分量的CMYK图像
+            并放入K频道，
+            percentage = 80, (30, 100, 255, 0) >> (6, 76, 231, 24)
+        """
+        if not percentage:
+            return im
+        cmyk_arr = im.split()
+        cmyk = []
+        for i in range(4):
+            cmyk.append(cmyk_arr[i].load())
+        for x in range(im.size[0]):  # for x axis pixels
+            for y in range(im.size[1]):  # for y axis pixels
+                gray = min(cmyk[0][x, y], cmyk[1][x, y], cmyk[2][x, y]) * percentage / 100
+                for i in range(3):
+                    cmyk[i][x, y] -= int(gray)
+                cmyk[3][x, y] = int(gray)
+        return Image.merge('CMYK', cmyk_arr)
+        
     def halftone(self, cmyk, sample, scale, angles, antialias):
         """
          返回cmyk图像的半色调图像列表。
