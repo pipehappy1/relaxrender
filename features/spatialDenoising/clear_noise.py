@@ -4,6 +4,32 @@ from PIL import Image, ImageDraw
 class ClearNoise:
     def __init__(self):
         pass
+    
+    # 判断噪点
+    # 将灰度值与周围灰度值相似度较小的点认为是噪点
+    def clearNoise_2(self, img, radius, m):
+
+        pix = img.load()
+        w, h = img.size
+        w -= 1
+        h -= 1
+
+        # 认为这个点是噪点
+        for i in range(0, w):
+            for j in range(0, h):
+                sim = -1
+                for k in range(i - radius, i + radius):
+                    if k < 1 or k > w:
+                        continue
+                    for q in range(j - radius, j + radius):
+                        if q <= 1 or q > h:
+                            continue
+                        if abs(pix[k, q] - pix[i, j]) < 40:
+                            sim += 1
+                # 该点与周围点相似度较小，认为是噪点
+                if sim < m:
+                    tmp = self.mid_of_rec(pix, i, j, radius, w, h)
+                    pix[i, j] = tmp
 
     def mid_of_rec(self, pix, x, y, radius, w, h):
         p = []
