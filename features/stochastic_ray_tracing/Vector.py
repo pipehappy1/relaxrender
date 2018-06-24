@@ -73,7 +73,8 @@ class Vector3:
 
     def sqrtMagnitude(self):
         return self.x*self.x+self.y*self.y+self.z*self.z
-
+		
+    #返回归一化的结果，但是自身不归一化
     def normalized(self):
         m=self.magnitude()
         temp=Vector3(self.x/m,self.y/m,self.z/m)
@@ -83,24 +84,31 @@ class Vector3:
     def AddVector3(self,target):
         temp=Vector3(self.x+target.x,self.y+target.y,self.z+target.z)
         return temp
+		
     #计算该向量和某一向量减法的结果，原向量不改变
     def MinusVector3(self,target):
         temp=Vector3(self.x-target.x,self.y-target.y,self.z-target.z)
         return temp
+		
     def MultipleVector3(self,data):
         temp=Vector3(self.x*data.x,self.y*data.y,self.z*data.z)
         return temp
+		
     def DivideVector3(self,data):
         temp=Vector3(self.x/data.x,self.y/data.y,self.z/data.z)
         return temp
+		
     #计算该向量和一个常数的乘积，原向量不改变
     def MultipleDecimal(self,data):
         temp=Vector3(self.x*data,self.y*data,self.z*data)
         return temp
+		
     #计算该向量和一个常数的除数结果，原向量不改变
     def DivideDecimal(self,data):
         temp=Vector3(self.x/data,self.y/data,self.z/data)
         return temp
+		
+	#自身归一化	
     def Normalize(self):
         m=self.magnitude()
         self.x=self.x/m
@@ -133,8 +141,10 @@ class Vector2:
 
     def magnitude(self):
         return sqrt(self.x*self.x+self.y*self.y)
+		
     def sqrtMagnitude(self):
         return self.x*self.x+self.y*self.y
+		
     #返回归一化的结果，但是自身不归一化
     def normalized(self):
         m=self.magnitude()
