@@ -8,20 +8,23 @@ import relaxrender.context as ctx
 
 class TestTriangles(unittest.TestCase):
 
-    def test_triangle(self):
-        tctx = ctx.Context()
-        if tctx.triangle_right_hand_norm:
-            p1 = rp.Point3D(0, 0, 0)
-            p2 = rp.Point3D(1, 0, 0)
-            p3 = rp.Point3D(0, 1, 0)
-        else:
-            p1 = rp.Point3D(0, 0, 0)
-            p2 = rp.Point3D(0, 1, 0)
-            p3 = rp.Point3D(1, 0, 0)
+    def test_addpoint(self):
+        p1 = rp.Point(0.5, 0.5, 0.5, None,
+                       color.Color.place_holder(),
+                       rp.Vector.place_holder())
 
-        ttri = tri.Triangle(p1, p2, p3)
+        p2 = rp.Point(0.0, 0.0, 0.0, None,
+                       color.Color.place_holder(),
+                       rp.Vector.place_holder())
 
-        self.assertTrue(ttri.verify())
+        p3 = rp.Point(0.5, 0.0, 0.5, None,
+                       color.Color.place_holder(),
+                       rp.Vector.place_holder())
+
+        tr1 = tri.Triangles()
+        tr1.add_triangle(tri.Triangle(p1, p2, p3))
+        
+        self.assertEqual(tr1.cindex, 1)
 
     def test_size(self):
         tr1 = tri.Triangles()
@@ -40,7 +43,20 @@ class TestTriangles(unittest.TestCase):
         tr1.append_tri(p1, p2, p3)
 
         self.assertEqual(tr1.size(), 2)
+	def test_triangle(self):
+        tctx = ctx.Context()
+        if tctx.triangle_right_hand_norm:
+            p1 = rp.Point3D(0, 0, 0)
+            p2 = rp.Point3D(1, 0, 0)
+            p3 = rp.Point3D(0, 1, 0)
+        else:
+            p1 = rp.Point3D(0, 0, 0)
+            p2 = rp.Point3D(0, 1, 0)
+            p3 = rp.Point3D(1, 0, 0)
 
+        ttri = tri.Triangle(p1, p2, p3)
+
+        self.assertTrue(ttri.verify())
 
     def test_read(self):
         tr1 = tri.Triangles()
@@ -56,23 +72,7 @@ class TestTriangles(unittest.TestCase):
 
         self.assertTrue(abs(np.linalg.norm(tr1[0].p1.data - p1)) < 1e-6)
 
-    def test_addpoint(self):
-        p1 = rp.Point(0.5, 0.5, 0.5, None,
-                       color.Color.place_holder(),
-                       rp.Vector.place_holder())
-
-        p2 = rp.Point(0.0, 0.0, 0.0, None,
-                       color.Color.place_holder(),
-                       rp.Vector.place_holder())
-
-        p3 = rp.Point(0.5, 0.0, 0.5, None,
-                       color.Color.place_holder(),
-                       rp.Vector.place_holder())
-
-        tr1 = tri.Triangles()
-        tr1.add_triangle(tri.Triangle(p1, p2, p3))
-        
-        self.assertEqual(tr1.cindex, 1)
+    
 
     def test_easy_add(self):
         p1 = np.array([0,0,0])
