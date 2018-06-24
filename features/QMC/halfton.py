@@ -15,7 +15,40 @@ class Halftone:
         :param path: eg: ./src/1.jpeg
         """
         self.path = path
+        
+    def make(self, sample=10, scale=1, angles=[0, 15, 30, 45], antialias=False, style='color', percentage=0,filename_add='_halftoned'):
+        """
+            sample: 原始图像中的样本框大小（以像素为单位）。
+            scale: 最大输出点直径是样本*比例
+            angles: 每个屏幕通道应旋转4个角度的列表
+            style: '颜色'或'灰度'
+            antialias: true or false
+            percentage: 从CMY频道中删除多少灰色分量并放入K频道
+            filename_add: 输出文件名
+        """
 
+        # try:
+        im = Image.open(self.path)
+        # except IOError:
+            # print("Cannot open such image...")
+            # raise
+
+        if style == 'grayscale':
+            angles = angles[:1]
+            gray_im = im.convert('L')  # mode:8位像素
+            dots = self.halftone(gray_im, sample, scale, angles, antialias)
+            new = dots[0]
+
+        else:
+            cmyk_im = im.convert('CMYK')
+            cmyk_im_merge = self.gcr(cmyk_im, percentage)
+            dots = self.halftone(cmyk_im_merge, sample, scale, angles, antialias)
+            new = Image.merge('CMYK', dots)  # mode:4*8 位像素,颜色分离
+
+        f, e = os.path.splitext(self.path)
+        outfile = "%s%s%s" % (f, filename_add, e)
+        new.save(outfile)
+        
     def halftone(self, cmyk, sample, scale, angles, antialias):
         """
          返回cmyk图像的半色调图像列表。
