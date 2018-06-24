@@ -1,6 +1,11 @@
-# spatial denoising
+# 26-spatial denoising
 
-## 空间去噪
+## 26组-空间去噪
+
+### 成员
+组长：蔡寒均（ [GitHub](https://github.com/nansanhao/relaxrender)）
+
+组员：陈霁璇，张子琦，王啸川，范贤明，曹庆中
 
 #### 测试方法：运行test_spatialDenoising.py文件
 
