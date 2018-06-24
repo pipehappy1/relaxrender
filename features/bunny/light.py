@@ -21,6 +21,7 @@ def setup_lighting():
 
     light1_diffuse=[-0.01, -0.01, -0.03, -0.03 ]
     light0_specular=[ 0.85, 0.85, 0.85, 0.85 ]
+    
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular)
     glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat_shininess)
