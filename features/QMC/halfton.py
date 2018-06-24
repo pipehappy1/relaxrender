@@ -1,3 +1,20 @@
+import PIL.Image as Image
+import PIL.ImageDraw as ImageDraw
+import PIL.ImageStat as ImageStat
+import os
+
+"""
+The bulk of this is taken from this Stack Overflow answer by fraxel:
+http://stackoverflow.com/a/10575940/250962
+"""
+
+
+class Halftone:
+    def __init__(self, path):
+        """
+        :param path: eg: ./src/1.jpeg
+        """
+        self.path = path
 
     def halftone(self, cmyk, sample, scale, angles, antialias):
         """
