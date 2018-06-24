@@ -9,7 +9,8 @@ class OBJ:
         self.normals = []
         self.texcoords = []
         self.faces = []
-
+        
+        #循环
         for line in open(fdir+filename, "r"):
             if line.startswith('#'):
                 continue
@@ -36,7 +37,8 @@ class OBJ:
                     if len(w) >= 3 and len(w[2]) > 0:
                         norms.append(int(w[2]))
                 self.faces.append((face, norms, texcoords))
-
+    #函数
+    
     def create_bbox(self):
         ps=np.array(self.vertices)
         vmin =ps.min(axis=0)
