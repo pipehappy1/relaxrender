@@ -8,9 +8,9 @@ def fract(input):
 
 #把数据限制在0-1
 def clamp(input):
-    if input<0:
+    if input<0.:
         return 0
-    elif input<1:
+    elif input<1.:
         return input
     else:
         return 1
