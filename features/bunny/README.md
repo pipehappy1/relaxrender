@@ -1,23 +1,19 @@
-运行前请安装以下两个库
+组号：第五组 项目名字：stanford bunny 仓库链接：https://github.com/zz313147877/relaxrender/ 分支：bgroup
 
-pip install pygame
+运行前请安装pygame以及OpenGL库 并将项目安装到D盘根目录 windows下可用以下指令： pip install pygame pip install pyOpenGL
 
-pip install PyOpenGL
-
-因为代码采用了绝对寻址，如果有必要，请将relaxrender-bgroup文件夹安装至D盘根目录下
-
-测试方法：运行test_main.py文件
+测试方法：运行test_main.py,test_objloader,test_light文件
 
 测试覆盖率方法
 
 打开 控制台 , cd 到项目根目录，之后设置 临时环境变量 PYTHONPATH 为当前目录，然后测试覆盖率
 
 cd <项目根目录>
+WINDOWS
 
-windows
 set PYTHONPATH=<relaxrender绝对目录>
+Linux
 
-linux
 export PYTHONPATH=<relaxrender绝对目录>
 
 cd features
