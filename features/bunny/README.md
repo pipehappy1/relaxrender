@@ -1,4 +1,4 @@
-组号：第五组 项目名字：stanford bunny 仓库链接：https://github.com/zz313147877/relaxrender/ 分支：bgroup
+组号：第四组 项目名字：stanford bunny 仓库链接：https://github.com/blueelphant/relaxrender/ 分支：agroup
 
 运行前请安装pygame以及OpenGL库 并将项目安装到D盘根目录 windows下可用以下指令： pip install pygame pip install pyOpenGL
 
