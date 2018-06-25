@@ -9,18 +9,19 @@ from OpenGL.GLUT.freeglut import *
 def setup_lighting():
     draw_2side=False
     c=[1.0,1.0,1.0]
-
     glColor3fv(c)
-
     mat_specular=[0.18, 0.18, 0.18, 0.18 ]
-
     mat_shininess=[ 64 ]
     global_ambient=[ 0.3, 0.3, 0.3, 0.05 ]
+    
+    #颜色设定
+    
     light0_ambient=[ 0, 0, 0, 0 ]
     light0_diffuse=[ 0.85, 0.85, 0.8, 0.85 ]
-
+    
     light1_diffuse=[-0.01, -0.01, -0.03, -0.03 ]
     light0_specular=[ 0.85, 0.85, 0.85, 0.85 ]
+    
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_specular)
     glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat_shininess)
@@ -43,4 +44,4 @@ class camera():
         # left, right, bottom, top, near, far
         params=np.array([-1, 1, -1, 1, 1, -1], np.float32)
         bbox=params[0:4]
-        nf=params[4:] # near far
+nf=params[4:] # near far
