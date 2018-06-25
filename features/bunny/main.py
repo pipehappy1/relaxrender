@@ -1,12 +1,9 @@
-import light
-from objloader import OBJ
+from features.bunny import light
+from features.bunny.objloader import OBJ
 import pickle
-import pygame, OpenGL
-from pygame.locals import *
+import pygame
 from OpenGL.GL import *
-from OpenGL.GLU import *
 from OpenGL.GLUT import *
-from OpenGL.GLUT.freeglut import *
 from pygame.locals import *
 
 def step1():
@@ -16,18 +13,15 @@ def step1():
         obj.create_bbox()
 
         with open(fn, 'wb') as f:  # open file with write-mode
-            pickle.dump(obj, f)  #picklestring = pickle.dumps(summer)
-    else:
-        with open(fn, 'rb') as f:
-            obj = pickle.load(f)
+            pickle.dump(obj, f)
 
     pygame.init()
-    
+    # 设置成一样的 这样 glOrtho 就简单些
     viewport = (600, 600)
-    srf = pygame.display.set_mode(viewport, OPENGL | DOUBLEBUF)
+    pygame.display.set_mode(viewport, OPENGL | DOUBLEBUF)
 
     light.setup_lighting()
-    glLightfv(GL_LIGHT0, GL_POSITION, (0, 0, -100, 0.0)) 
+    glLightfv(GL_LIGHT0, GL_POSITION, (0, 0, -100, 0.0)) # 指的是光的朝向
 
     glEnable(GL_DEPTH_TEST)
     glShadeModel(GL_SMOOTH)  # most obj files expect to be smooth-shaded
@@ -39,9 +33,7 @@ def step1():
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
 
-    #gluPerspective(60.0, width / float(height), 1, 100.0)
     cam=light.camera
-    #cam.Ortho.params=cam.Ortho.params*15
     cam.Ortho.bbox[:] = cam.Ortho.bbox * 13
     cam.Ortho.nf[:] = cam.Ortho.nf * 20
     glOrtho(*cam.Ortho.params)
@@ -52,6 +44,7 @@ def step1():
     rx, ry = (0, 0)
     tx, ty = (0, 0)
     zpos = 5
+    '''
     rotate = move = False
     while 1:
         clock.tick(30)
@@ -83,23 +76,16 @@ def step1():
                 if move:
                     tx += i
                     ty -= j
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glLoadIdentity()
-
-
-        # RENDER OBJECT
         glTranslate(tx / 20., ty / 20., - zpos)
         glRotate(ry/5, 1, 0, 0)
         glRotate(rx/5, 0, 0, 1)
-
         s = [ 10/obj.bbox_half_r ]*3
         glScale(*s)
-
         t = -obj.bbox_center
         glTranslate(*t)
-
         glCallList(obj.gl_list)
-
         pygame.display.flip()
+         '''
 step1()
