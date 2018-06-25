@@ -44,4 +44,4 @@ class camera():
         # left, right, bottom, top, near, far
         params=np.array([-1, 1, -1, 1, 1, -1], np.float32)
         bbox=params[0:4]
-nf=params[4:] # near far
+        nf=params[4:] # near far
