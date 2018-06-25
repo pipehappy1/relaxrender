@@ -9,7 +9,7 @@ from pygame.locals import *
 def step1():
     fn = "obj.pkl"
     if 1 == 1:
-        obj = OBJ("d:/relaxrender-bgroup/features/bunny/", "bunny.obj", swapyz=True)
+        obj = OBJ("", "bunny.obj", swapyz=True)
         obj.create_bbox()
 
         with open(fn, 'wb') as f:  # open file with write-mode
