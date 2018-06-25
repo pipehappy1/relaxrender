@@ -30,8 +30,9 @@ class Vector3:
     """
     以下为操作符重载
     """
-    def __str__(self):
-        return "("+str(self.x)+","+str(self.y)+","+str(self.z)+")"
+    #为了迎合和概率删了
+    # def __str__(self):
+    #     return "("+str(self.x)+","+str(self.y)+","+str(self.z)+")"
 
     #左加
     def __add__(self, data):
@@ -44,21 +45,21 @@ class Vector3:
         temp=Vector3(self.x-data.x,self.y-data.y,self.z-data.z)
         return temp
 
-    def __mul__(self, data):
-        if type(data)==vector3_instance:
-            return Vector3(self.x*data.x,self.y*data.y,self.z*data.z)
-        elif type(data)==float or type(data)==int:
-            return Vector3(self.x*data,self.y*data,self.z*data)
+    # def __mul__(self, data):
+    #     if type(data)==vector3_instance:
+    #         return Vector3(self.x*data.x,self.y*data.y,self.z*data.z)
+    #     elif type(data)==float or type(data)==int:
+    #         return Vector3(self.x*data,self.y*data,self.z*data)
 
 
-    def __iadd__(self, data):
-        if type(data)==vector3_instance:
-            print(type(data))
-            return Vector3(self.x+data.x,self.y+data.y,self.z+self.z)
-        elif type(data)==float or type(data)==int:
-            return self+data
-        else:
-            return self
+    # def __iadd__(self, data):
+    #     if type(data)==vector3_instance:
+    #         print(type(data))
+    #         return Vector3(self.x+data.x,self.y+data.y,self.z+self.z)
+    #     elif type(data)==float or type(data)==int:
+    #         return self+data
+    #     else:
+    #         return self
 
 
 
@@ -67,11 +68,11 @@ class Vector3:
     以上为操作符重载
     """
 
-    def dot(self,target):
-        self.x=self.x*target.x
-        self.y=self.y*target.y
-        self.z=self.z*target.z
-        return self
+    # def dot(self,target):
+    #     self.x=self.x*target.x
+    #     self.y=self.y*target.y
+    #     self.z=self.z*target.z
+    #     return self
     
     def sum(self):
         return self.x+self.y+self.z
@@ -88,10 +89,6 @@ class Vector3:
         temp=Vector3(self.x/m,self.y/m,self.z/m)
         return temp
 
-    #计算该向量和某一向量加法的结果，原向量不改变
-    def AddVector3(self,target):
-        temp=Vector3(self.x+target.x,self.y+target.y,self.z+target.z)
-        return temp
     #计算该向量和某一向量减法的结果，原向量不改变
     def MinusVector3(self,target):
         temp=Vector3(self.x-target.x,self.y-target.y,self.z-target.z)
@@ -99,9 +96,7 @@ class Vector3:
     def MultipleVector3(self,data):
         temp=Vector3(self.x*data.x,self.y*data.y,self.z*data.z)
         return temp
-    def DivideVector3(self,data):
-        temp=Vector3(self.x/data.x,self.y/data.y,self.z/data.z)
-        return temp
+
     #计算该向量和一个常数的乘积，原向量不改变
     def MultipleDecimal(self,data):
         temp=Vector3(self.x*data,self.y*data,self.z*data)
@@ -132,27 +127,27 @@ class Vector2:
     def __init__(self,x=0.0,y=0.0):
         self.x=x
         self.y=y
-    def setSelf(self,targetVector2):
-        self.x=targetVector2.x
-        self.y=targetVector2.y
+    # def setSelf(self,targetVector2):
+    #     self.x=targetVector2.x
+    #     self.y=targetVector2.y
 
-    def magnitude(self):
-        return sqrt(self.x*self.x+self.y*self.y)
-    def sqrtMagnitude(self):
-        return self.x*self.x+self.y*self.y
-    #返回归一化的结果，但是自身不归一化
-    def normalized(self):
-        m=self.magnitude()
-        temp=Vector2(self.x/m,self.y/m)
-        return temp
+    # def magnitude(self):
+    #     return sqrt(self.x*self.x+self.y*self.y)
+    # def sqrtMagnitude(self):
+    #     return self.x*self.x+self.y*self.y
+    # #返回归一化的结果，但是自身不归一化
+    # def normalized(self):
+    #     m=self.magnitude()
+    #     temp=Vector2(self.x/m,self.y/m)
+    #     return temp
     
-    #自身归一化
-    def Normalize(self):
-        m=self.magnitude()
-        self.x=self.x/m
-        self.y=self.y/m
-        self.z=self.z/m
-        return self
+    # #自身归一化
+    # def Normalize(self):
+    #     m=self.magnitude()
+    #     self.x=self.x/m
+    #     self.y=self.y/m
+    #     self.z=self.z/m
+    #     return self
     
 
 #零三维向量
@@ -241,9 +236,9 @@ class Ray:
         self.origin=Vector3(origin.x,origin.y,origin.z)
         self.dir=Vector3(direction.x,direction.y,direction.z)
 
-    def setSelf(self,data):
-        self.origin.setSelf(data.origin)
-        self.dir.setSelf(data.dir)
+    # def setSelf(self,data):
+    #     self.origin.setSelf(data.origin)
+    #     self.dir.setSelf(data.dir)
 
     def IntersectWithSphere(self,sphere):
         op=sphere.pos-self.origin
