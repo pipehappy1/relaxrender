@@ -5,6 +5,8 @@ from random import random
 from time import time
 import math as mt
 
+
+
 #分辨率
 iResolution=md.Vector2(100,80)
 #采样点个数
@@ -64,6 +66,11 @@ planes=[]
 
 
 
+
+
+
+
+#init the scene
 def initScene():
     
     for i in range(NUM_SPHERES):
@@ -106,6 +113,8 @@ def intersectByRay(ray):
 
     return id
 
+	
+#test the ray is or isnt with akk
 def intersectWithAll(ray,t,normal,mat,nextPoint):
     id=-1
     isIdOfSphere=False
@@ -137,6 +146,7 @@ def intersectWithAll(ray,t,normal,mat,nextPoint):
     
     return id
 
+#the camera postition
 camPos=md.Vector3(80.,40.8,172.)
 cz=md.FORWARD_VECTOR3
 cx=md.LEFT_VECTOR3
@@ -144,15 +154,15 @@ cy=md.UP_VECTOR3
 aspectRatio=(float(iResolution.x))/(iResolution.y)
 omegaRate=(1.0)/(mt.pi*0.5*(mt.pi*0.5-1))
 
-#辐射度计算，即对应的灰度
+#辐射度计算，即对应的灰度~~~~~~~~~~~
 def trace(u,v):
     
     rayDirTmp=(cx.MultipleDecimal(aspectRatio * (u * 2 - 1))+cy.MultipleDecimal((v * 2 - 1)*.5135)+cz).normalized()
     ray=md.Ray(camPos,rayDirTmp)
 
-    #累积辐射度
+    #累积辐射度~~~~~~~~
     radiance=md.Vector3()
-    #累计反射率
+    #累计反射率  ~~~~~~~~~~~
     reflectance=md.Vector3()
     reflectance.setSelf(md.ONE_VECTOR3)
     #相交处距离
@@ -310,8 +320,10 @@ def toBMPColor(dest,input):
     dest.g=(basef.clamp(input.y**(1 / GAMMA)) * 255 + 0.5)
     dest.b=(basef.clamp(input.z**(1 / GAMMA)) * 255 + 0.5)
 
-
-    
+#入口函数
+#入口函数
+#入口函数
+#入口函数
 def ray_tracing():
     #初始化场景
     initScene()
