@@ -1,3 +1,4 @@
+
 #取小数部分
 # def fract(input):
 #     output=input-int(input)
@@ -14,6 +15,5 @@ def clamp(input):
         return input
     else:
         return 1
-
 
 
